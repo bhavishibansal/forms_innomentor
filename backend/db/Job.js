@@ -10,26 +10,26 @@ let schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    name: {
-      type: String,
-      //required: true,
-    },
-    email: {
-      type: String,
-      //required: true,
-    },
-    dob: {
-      type: Date,
-      //required: true,
-      validate: [
-        {
-          validator: function (value) {
-            return value <= new Date();
-          },
-          msg: "Date of birth cannot be in the future",
-        },
-      ],
-    },
+    // name: {
+    //   type: String,
+    //   //required: true,
+    // },
+    // email: {
+    //   type: String,
+    //   //required: true,
+    // },
+    // dob: {
+    //   type: Date,
+    //   //required: true,
+    //   validate: [
+    //     {
+    //       validator: function (value) {
+    //         return value <= new Date();
+    //       },
+    //       msg: "Date of birth cannot be in the future",
+    //     },
+    //   ],
+    // },
     // contact: {
     //   type: Number,
     //   //required: true,
@@ -40,26 +40,26 @@ let schema = new mongoose.Schema(
     //         },
     //       ],
     // },
-    linkedln: {
-      type: String,
-      //required: true,
-    },
-    companyName: {
-      type: String,
-      //required: true,
-    },
-    companyAddress: {
-      type: String,
-      //required: true,
-    },
-    companyWebsite: {
-      type: String,
-      //required: true,
-    },
-    ideaDescription: {
-      type: String,
-      //required: true,
-    },
+    // linkedln: {
+    //   type: String,
+    //   //required: true,
+    // },
+    // companyName: {
+    //   type: String,
+    //   //required: true,
+    // },
+    // companyAddress: {
+    //   type: String,
+    //   //required: true,
+    // },
+    // companyWebsite: {
+    //   type: String,
+    //   //required: true,
+    // },
+    // ideaDescription: {
+    //   type: String,
+    //   //required: true,
+    // },
     // maxApplicants: {
     //   type: Number,
     //   validate: [
@@ -122,7 +122,45 @@ let schema = new mongoose.Schema(
         },
       ],
     },
-   contact: {
+   
+    name: {
+      type: String,
+      // validate: {
+      //   validator: function(v) {
+      //     return /^[a-zA-Z ]+$/.test(v);
+      //   },
+      //   message: "Name should contain only letters and spaces"
+      // },
+      default: ''
+    },
+    
+    email: {
+      type: String,
+     default: '',
+      // validate: [
+      //   {
+      //     validator: Number.isInteger,
+      //     msg: "contact should be an integer",
+      //   },
+      //   {
+      //     validator: function (value) {
+      //       return value >= 0;
+      //     },
+      //     msg: "contact should greater than equal to 0",
+      //   },
+      // ],
+    },
+    dob: {
+      type: Date,
+      // validate: {
+      //   validator: function(v) {
+      //     return /^[a-zA-Z ]+$/.test(v);
+      //   },
+      //   message: "Name should contain only letters and spaces"
+      // },
+      default: ''
+    },
+    contact: {
       type: Number,
      default: '',
       // validate: [
@@ -138,38 +176,13 @@ let schema = new mongoose.Schema(
       //   },
       // ],
     },
-    name: {
+    linkedln: {
       type: String,
-      // validate: {
-      //   validator: function(v) {
-      //     return /^[a-zA-Z ]+$/.test(v);
-      //   },
-      //   message: "Name should contain only letters and spaces"
-      // },
+      
       default: ''
     },
     companyName: {
       type: String,
-      // validate: {
-      //   validator: function(v) {
-      //     return /^[a-zA-Z ]+$/.test(v);
-      //   },
-      //   message: "Name should contain only letters and spaces"
-      // },
-      default: ''
-    },
-    companyWebsite: {
-      type: String,
-      // validate: {
-      //   validator: function(v) {
-      //     return /^[a-zA-Z ]+$/.test(v);
-      //   },
-      //   message: "Name should contain only letters and spaces"
-      // },
-      default: ''
-    },
-    dob: {
-      type: Date,
       // validate: {
       //   validator: function(v) {
       //     return /^[a-zA-Z ]+$/.test(v);
@@ -183,7 +196,16 @@ let schema = new mongoose.Schema(
       
       default: ''
     },
-    
+    companyWebsite: {
+      type: String,
+      // validate: {
+      //   validator: function(v) {
+      //     return /^[a-zA-Z ]+$/.test(v);
+      //   },
+      //   message: "Name should contain only letters and spaces"
+      // },
+      default: ''
+    },
     // dateOfPosting: {
     //   type: Date,
     //   default: Date.now,

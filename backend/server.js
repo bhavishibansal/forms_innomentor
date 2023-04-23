@@ -5,6 +5,7 @@ const passportConfig = require("./lib/passportConfig");
 const cors = require("cors");
 const fs = require("fs");
 
+
 // MongoDB
 mongoose
   .connect("mongodb://localhost:27017/jobPortal", {
@@ -45,5 +46,6 @@ app.use("/upload", require("./routes/uploadRoutes"));
 app.use("/host", require("./routes/downloadRoutes"));
 
 app.listen(port, () => {
+
   console.log(`Server started on port ${port}!`);
 });

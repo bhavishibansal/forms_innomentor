@@ -101,7 +101,8 @@ const JobTile = (props) => {
   const deadline = new Date(job.deadline).toLocaleDateString();
 
   return (
-    <Paper className={classes.jobTileOuter} elevation={3}>
+    
+    <Paper classcontact={classes.jobTileOuter} elevation={3}>
       <Grid container>
         <Grid container item xs={9} spacing={1} direction="column">
           <Grid item>
@@ -110,18 +111,24 @@ const JobTile = (props) => {
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
-          <Grid item>Name : {job.name}</Grid>
+          <Grid item>contact : {job.contact}</Grid>
+          
+
+          <Grid item>Email :  {job.email} </Grid>
           <Grid item>DOB :  {job.dob} </Grid>
           <Grid item>Contact :  {job.contact} </Grid>
-          <Grid item>Email :  {job.email} </Grid>
+          <Grid item>Linkedln : {job.linkedln} </Grid>
+          <Grid item>Company contact : {job.companycontact} </Grid>
+          <Grid item>Company Address : {job.companyAddress} </Grid>
+          <Grid item>Company Website : {job.companyWebsite} </Grid>
           <Grid item>Title : {job.title} </Grid>
           <Grid item>Idea Description : {job.ideaDescription} </Grid>
-          <Grid item>Company Name : {job.companyName} </Grid>
-          {/* <Grid item>
-            Duration :{" "}
-            {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
-          </Grid> */}
-          {/* <Grid item>Posted By : {job.recruiter.name}</Grid> */}
+          
+          <Grid item>
+            name :{" "}
+            {job.name !== 0 ? `${job.name}` : `Flexible`}
+          </Grid>
+          {/* <Grid item>Posted By : {job.recruiter.contact}</Grid> */}
           {/* <Grid item>Application Deadline : {deadline}</Grid> */}
 
           {/* <Grid item>
@@ -134,7 +141,7 @@ const JobTile = (props) => {
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}
+            classcontact={classes.button}
             onClick={() => {
               setOpen(true);
             }}
@@ -143,7 +150,7 @@ const JobTile = (props) => {
           </Button>
         </Grid>
       </Grid>
-      <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
+      <Modal open={open} onClose={handleClose} classcontact={classes.popupDialog}>
         <Paper
           style={{
             padding: "20px",
@@ -190,7 +197,7 @@ const FilterPopup = (props) => {
   const classes = useStyles();
   const { open, handleClose, searchOptions, setSearchOptions, getData } = props;
   return (
-    <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
+    <Modal open={open} onClose={handleClose} classcontact={classes.popupDialog}>
       <Paper
         style={{
           padding: "50px",
@@ -200,9 +207,9 @@ const FilterPopup = (props) => {
       >
         <Grid container direction="column" alignItems="center" spacing={3}>
           <Grid container item alignItems="center">
-            <Grid item xs={3}>
-              Job Type
-            </Grid>
+            {/* <Grid item xs={3}>
+             Contact
+            </Grid> */}
             <Grid
               container
               item
@@ -210,18 +217,18 @@ const FilterPopup = (props) => {
               justify="space-around"
               // alignItems="center"
             >
-              <Grid item>
+              {/* <Grid item>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="fullTime"
+                      contact="fullTime"
                       checked={searchOptions.jobType.fullTime}
                       onChange={(event) => {
                         setSearchOptions({
                           ...searchOptions,
                           jobType: {
                             ...searchOptions.jobType,
-                            [event.target.name]: event.target.checked,
+                            [event.target.contact]: event.target.checked,
                           },
                         });
                       }}
@@ -229,19 +236,19 @@ const FilterPopup = (props) => {
                   }
                   label="Full Time"
                 />
-              </Grid>
-              <Grid item>
+              </Grid> */}
+              {/* <Grid item>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="partTime"
+                      contact="partTime"
                       checked={searchOptions.jobType.partTime}
                       onChange={(event) => {
                         setSearchOptions({
                           ...searchOptions,
                           jobType: {
                             ...searchOptions.jobType,
-                            [event.target.name]: event.target.checked,
+                            [event.target.contact]: event.target.checked,
                           },
                         });
                       }}
@@ -249,19 +256,19 @@ const FilterPopup = (props) => {
                   }
                   label="Part Time"
                 />
-              </Grid>
-              <Grid item>
+              </Grid> */}
+              {/* <Grid item>
                 <FormControlLabel
                   control={
                     <Checkbox
-                      name="wfh"
+                      contact="wfh"
                       checked={searchOptions.jobType.wfh}
                       onChange={(event) => {
                         setSearchOptions({
                           ...searchOptions,
                           jobType: {
                             ...searchOptions.jobType,
-                            [event.target.name]: event.target.checked,
+                            [event.target.contact]: event.target.checked,
                           },
                         });
                       }}
@@ -269,12 +276,12 @@ const FilterPopup = (props) => {
                   }
                   label="Work From Home"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
           <Grid container item alignItems="center">
             <Grid item xs={3}>
-              Salary
+              contact
             </Grid>
             <Grid item xs={9}>
               <Slider
@@ -286,11 +293,11 @@ const FilterPopup = (props) => {
                   { value: 0, label: "0" },
                   { value: 100, label: "100000" },
                 ]}
-                value={searchOptions.salary}
+                value={searchOptions.contact}
                 onChange={(event, value) =>
                   setSearchOptions({
                     ...searchOptions,
-                    salary: value,
+                    contact: value,
                   })
                 }
               />
@@ -298,30 +305,24 @@ const FilterPopup = (props) => {
           </Grid>
           <Grid container item alignItems="center">
             <Grid item xs={3}>
-              Duration
+              name
             </Grid>
             <Grid item xs={9}>
               <TextField
                 select
-                label="Duration"
+                label="name"
                 variant="outlined"
                 fullWidth
-                value={searchOptions.duration}
+                value={searchOptions.name}
                 onChange={(event) =>
                   setSearchOptions({
                     ...searchOptions,
-                    duration: event.target.value,
+                    name: event.target.value,
                   })
                 }
               >
-                <MenuItem value="0">All</MenuItem>
-                <MenuItem value="1">1</MenuItem>
-                <MenuItem value="2">2</MenuItem>
-                <MenuItem value="3">3</MenuItem>
-                <MenuItem value="4">4</MenuItem>
-                <MenuItem value="5">5</MenuItem>
-                <MenuItem value="6">6</MenuItem>
-                <MenuItem value="7">7</MenuItem>
+                <MenuItem value=" ">All</MenuItem>
+                
               </TextField>
             </Grid>
           </Grid>
@@ -340,45 +341,45 @@ const FilterPopup = (props) => {
               >
                 <Grid item>
                   <Checkbox
-                    name="salary"
-                    checked={searchOptions.sort.salary.status}
+                    contact="contact"
+                    checked={searchOptions.sort.contact.status}
                     onChange={(event) =>
                       setSearchOptions({
                         ...searchOptions,
                         sort: {
                           ...searchOptions.sort,
-                          salary: {
-                            ...searchOptions.sort.salary,
+                          contact: {
+                            ...searchOptions.sort.contact,
                             status: event.target.checked,
                           },
                         },
                       })
                     }
-                    id="salary"
+                    id="contact"
                   />
                 </Grid>
                 <Grid item>
-                  <label for="salary">
-                    <Typography>Salary</Typography>
+                  <label for="contact">
+                    <Typography>contact</Typography>
                   </label>
                 </Grid>
                 <Grid item>
                   <IconButton
-                    disabled={!searchOptions.sort.salary.status}
+                    disabled={!searchOptions.sort.contact.status}
                     onClick={() => {
                       setSearchOptions({
                         ...searchOptions,
                         sort: {
                           ...searchOptions.sort,
-                          salary: {
-                            ...searchOptions.sort.salary,
-                            desc: !searchOptions.sort.salary.desc,
+                          contact: {
+                            ...searchOptions.sort.contact,
+                            desc: !searchOptions.sort.contact.desc,
                           },
                         },
                       });
                     }}
                   >
-                    {searchOptions.sort.salary.desc ? (
+                    {searchOptions.sort.contact.desc ? (
                       <ArrowDownwardIcon />
                     ) : (
                       <ArrowUpwardIcon />
@@ -396,45 +397,45 @@ const FilterPopup = (props) => {
               >
                 <Grid item>
                   <Checkbox
-                    name="duration"
-                    checked={searchOptions.sort.duration.status}
+                    contact="name"
+                    checked={searchOptions.sort.name.status}
                     onChange={(event) =>
                       setSearchOptions({
                         ...searchOptions,
                         sort: {
                           ...searchOptions.sort,
-                          duration: {
-                            ...searchOptions.sort.duration,
+                          name: {
+                            ...searchOptions.sort.name,
                             status: event.target.checked,
                           },
                         },
                       })
                     }
-                    id="duration"
+                    id="name"
                   />
                 </Grid>
                 <Grid item>
-                  <label for="duration">
-                    <Typography>Duration</Typography>
+                  <label for="name">
+                    <Typography>Name</Typography>
                   </label>
                 </Grid>
                 <Grid item>
                   <IconButton
-                    disabled={!searchOptions.sort.duration.status}
+                    disabled={!searchOptions.sort.name.status}
                     onClick={() => {
                       setSearchOptions({
                         ...searchOptions,
                         sort: {
                           ...searchOptions.sort,
-                          duration: {
-                            ...searchOptions.sort.duration,
-                            desc: !searchOptions.sort.duration.desc,
+                          name: {
+                            ...searchOptions.sort.name,
+                            desc: !searchOptions.sort.name.desc,
                           },
                         },
                       });
                     }}
                   >
-                    {searchOptions.sort.duration.desc ? (
+                    {searchOptions.sort.name.desc ? (
                       <ArrowDownwardIcon />
                     ) : (
                       <ArrowUpwardIcon />
@@ -452,7 +453,7 @@ const FilterPopup = (props) => {
               >
                 <Grid item>
                   <Checkbox
-                    name="rating"
+                    contact="rating"
                     checked={searchOptions.sort.rating.status}
                     onChange={(event) =>
                       setSearchOptions({
@@ -522,19 +523,19 @@ const Home = (props) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchOptions, setSearchOptions] = useState({
     query: "",
-    jobType: {
-      fullTime: false,
-      partTime: false,
-      wfh: false,
-    },
-    salary: [0, 100],
-    duration: "0",
+    // jobType: {
+    //   fullTime: false,
+    //   partTime: false,
+    //   wfh: false,
+    // },
+    contact: [0, 100],
+    name: " ",
     sort: {
-      salary: {
+      contact: {
         status: false,
         desc: false,
       },
-      duration: {
+      name: {
         status: false,
         desc: false,
       },
@@ -552,32 +553,32 @@ const Home = (props) => {
 
   const getData = () => {
     let searchParams = [];
-    if (searchOptions.query !== "") {
-      searchParams = [...searchParams, `q=${searchOptions.query}`];
-    }
-    if (searchOptions.jobType.fullTime) {
-      searchParams = [...searchParams, `jobType=Full%20Time`];
-    }
-    if (searchOptions.jobType.partTime) {
-      searchParams = [...searchParams, `jobType=Part%20Time`];
-    }
-    if (searchOptions.jobType.wfh) {
-      searchParams = [...searchParams, `jobType=Work%20From%20Home`];
-    }
-    if (searchOptions.salary[0] != 0) {
+    // if (searchOptions.query !== "") {
+    //   searchParams = [...searchParams, `q=${searchOptions.query}`];
+    // }
+    // if (searchOptions.jobType.fullTime) {
+    //   searchParams = [...searchParams, `jobType=Full%20Time`];
+    // }
+    // if (searchOptions.jobType.partTime) {
+    //   searchParams = [...searchParams, `jobType=Part%20Time`];
+    // }
+    // if (searchOptions.jobType.wfh) {
+    //   searchParams = [...searchParams, `jobType=Work%20From%20Home`];
+    // }
+    if (searchOptions.contact[0] != 0) {
       searchParams = [
         ...searchParams,
-        `salaryMin=${searchOptions.salary[0] * 1000}`,
+        `contactMin=${searchOptions.contact[0] * 1000}`,
       ];
     }
-    if (searchOptions.salary[1] != 100) {
+    if (searchOptions.contact[1] != 100) {
       searchParams = [
         ...searchParams,
-        `salaryMax=${searchOptions.salary[1] * 1000}`,
+        `contactMax=${searchOptions.contact[1] * 1000}`,
       ];
     }
-    if (searchOptions.duration != "0") {
-      searchParams = [...searchParams, `duration=${searchOptions.duration}`];
+    if (searchOptions.name != "0") {
+      searchParams = [...searchParams, `name=${searchOptions.name}`];
     }
 
     let asc = [],

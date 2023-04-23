@@ -10,6 +10,11 @@ const Application = require("../db/Application");
 const Rating = require("../db/Rating");
 
 const router = express.Router();
+router.use(express.json());
+
+router.get("/test",(req,res)=>{
+  res.json("TEST OK");
+})
 
 // To add new job
 router.post("/jobs", jwtAuth, (req, res) => {
@@ -29,12 +34,15 @@ router.post("/jobs", jwtAuth, (req, res) => {
     title: data.title,
     maxApplicants: data.maxApplicants,
     maxPositions: data.maxPositions,
-    dateOfPosting: data.dateOfPosting,
-    deadline: data.deadline,
-    skillsets: data.skillsets,
-    jobType: data.jobType,
-    duration: data.duration,
-    salary: data.salary,
+    name: data.name,
+    email: data.email,
+    dob: data.dob,
+    contact: data.contact,
+    linkedln: data.linkedln,
+    companyName: data.companyName,
+    companyAddress: data.companyAddress,
+    companyWebsite: data.companyWebsite,
+    ideaDescription: data.ideaDescription,
     rating: data.rating,
   });
 
@@ -47,6 +55,18 @@ router.post("/jobs", jwtAuth, (req, res) => {
       res.status(400).json(err);
     });
 });
+
+router.get("/allJobs",async (req,res)=>{
+  const alldata = await Job.find({},function(err,data){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.json(data);
+    }
+  })
+  // res.json()
+})
 
 // to get all the jobs [pagination] [for recruiter personal and for everyone]
 router.get("/jobs", jwtAuth, (req, res) => {
@@ -76,18 +96,18 @@ router.get("/jobs", jwtAuth, (req, res) => {
     };
   }
 
-  if (req.query.jobType) {
-    let jobTypes = [];
-    if (Array.isArray(req.query.jobType)) {
-      jobTypes = req.query.jobType;
+  if (req.query.contact) {
+    let contacts = [];
+    if (Array.isArray(req.query.contact)) {
+      contacts = req.query.contact;
     } else {
-      jobTypes = [req.query.jobType];
+      contacts = [req.query.contact];
     }
-    console.log(jobTypes);
+    console.log("JOBS CONTACT "+contacts);
     findParams = {
       ...findParams,
-      jobType: {
-        $in: jobTypes,
+      contact: {
+        $in: contacts,
       },
     };
   }
@@ -124,11 +144,11 @@ router.get("/jobs", jwtAuth, (req, res) => {
     };
   }
 
-  if (req.query.duration) {
+  if (req.query.linkedln) {
     findParams = {
       ...findParams,
-      duration: {
-        $lt: parseInt(req.query.duration),
+      linkedln: {
+        $lt: parseInt(req.query.linkedln),
       },
     };
   }
@@ -264,8 +284,8 @@ router.put("/jobs/:id", jwtAuth, (req, res) => {
       if (data.maxPositions) {
         job.maxPositions = data.maxPositions;
       }
-      if (data.deadline) {
-        job.deadline = data.deadline;
+      if (data.email) {
+        job.email = data.email;
       }
       job
         .save()
@@ -391,6 +411,8 @@ router.get("/user/:id", jwtAuth, (req, res) => {
       res.status(400).json(err);
     });
 });
+
+
 
 // update user details
 router.put("/user", jwtAuth, (req, res) => {
