@@ -157,23 +157,28 @@ const JobTile = (props) => {
           <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
+          <Grid item>Name : {job.name}</Grid>
+          <Grid item>Email : {job.email}</Grid>
           <Grid item>DOB : {job.dob}</Grid>
+
           <Grid item>Contact : {job.contact}</Grid>
-          {/* <Grid item>
-            dob :{" "}
-            {job.dob !== 0 ? `${job.dob} month` : `Flexible`}
-          </Grid> */}
+          <Grid item>Linkedln : {job.linkedln}</Grid>
+          <Grid item>Company Name : {job.companyName}</Grid>
+          <Grid item>Company Address : {job.companyAddress}</Grid>
+          <Grid item>Company Website : {job.companyWebsite}</Grid>
+          <Grid item>idea Description : {job.ideaDescription}</Grid>
+          
           <Grid item>Date Of Posting: {postedOn.toLocaleDateString()}</Grid>
           {/* <Grid item>Number of Applicants: {job.maxApplicants}</Grid>
           <Grid item>
             Remaining Number of Positions:{" "}
             {job.maxPositions - job.acceptedCandidates}
           </Grid> */}
-          <Grid item>
+          {/* <Grid item>
             {job.skillsets.map((skill) => (
               <Chip label={skill} style={{ marginRight: "2px" }} />
             ))}
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid item container direction="column" xs={3}>
           <Grid item xs>
@@ -279,7 +284,7 @@ const JobTile = (props) => {
             spacing={3}
             style={{ margin: "10px" }}
           >
-            <Grid item>
+            {/* <Grid item>
               <TextField
                 label="Application Deadline"
                 type="datetime-local"
@@ -293,7 +298,7 @@ const JobTile = (props) => {
                 variant="outlined"
                 fullWidth
               />
-            </Grid>
+            </Grid> */}
             <Grid item>
               <TextField
                 label="Maximum Number Of Applicants"
